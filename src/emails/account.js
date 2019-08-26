@@ -4,9 +4,25 @@ const sendgridAPIKey = 'SG.JPqqVKHWQCC__qu8bGHCuQ.5HsrqyI-CiBClgZFqh3J7ga3lnuppM
 
 sgMail.setApiKey(sendgridAPIKey);
 
-sgMail.send({
-	to: 'ragtimesims@gmail.com',
-	from: 'important@gmail.com',
-	subject: 'This is my first Sendgril email',
-	text: 'Here is my inaugural email using Sendgrid. I hope it works!'
-});
+const sendWelcomeEmail = (email, name) => {
+	sgMail.send({
+		to: email,
+		from: 'ragtimesims@gmail.com',
+		subject: 'Welcome to TaskPro!',
+		text: `Welcome to TaskPro, ${name}. You just took your first step to greater productivity!`
+	});
+};
+
+const sendCancelEmail = (email, name) => {
+	sgMail.send({
+		to: email,
+		from: 'ragtimesims@gmail.com',
+		subject: 'Sorry to see you go',
+		text: `${name}, we are sorry to see you go but thank you for using our service. Please contact us to know if there were ways we could improve.`
+	});
+};
+
+module.exports = {
+	sendWelcomeEmail,
+	sendCancelEmail
+};
